@@ -1,0 +1,10 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="Header">Revit二次开发环境一键配置</sys:String>
+    <sys:String x:Key="CurrentUser">当前用户</sys:String>
+    <sys:String x:Key="AllUser">所有用户</sys:String>
+    <sys:String x:Key="Start">开始安装</sys:String>
+    <sys:String x:Key="SwitchLanguage">语言:</sys:String>
+</ResourceDictionary>

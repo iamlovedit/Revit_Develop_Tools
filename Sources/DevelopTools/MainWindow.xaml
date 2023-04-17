@@ -28,7 +28,7 @@
                 FontSize="20"
                 Foreground="White"
                 Style="{StaticResource MaterialDesignButtonTextBlock}"
-                Text="Revit二次开发环境一键配置" />
+                Text="{DynamicResource Header}" />
         </Border>
 
         <TextBlock
@@ -101,10 +101,24 @@
 
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
                     <RowDefinition />
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <DockPanel HorizontalAlignment="Center">
+                    <TextBlock VerticalAlignment="Center" Text="{DynamicResource SwitchLanguage}" />
+                    <ComboBox
+                        Width="80"
+                        Height="24"
+                        Margin="8,0,0,0"
+                        HorizontalContentAlignment="Center"
+                        ItemsSource="{Binding Languages}"
+                        SelectedItem="{Binding SelectedLanguage}" />
+                </DockPanel>
+                <StackPanel
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
                     <CheckBox
                         Margin="0,0,0,24"
                         Content="AddinManager"
@@ -112,15 +126,15 @@
                     <CheckBox Content="RevitLookup" IsChecked="{Binding IsLookupChecked}" />
                 </StackPanel>
                 <StackPanel
-                    Grid.Row="1"
+                    Grid.Row="2"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Orientation="Horizontal">
                     <RadioButton
                         Margin="0,0,12,0"
-                        Content="当前用户"
+                        Content="{DynamicResource CurrentUser}"
                         IsChecked="{Binding IsCurrentUser}" />
-                    <RadioButton Content="所有用户" IsChecked="True" />
+                    <RadioButton Content="{DynamicResource AllUsers}" IsChecked="True" />
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="3" Grid.ColumnSpan="2">
@@ -211,10 +225,9 @@
                 <Button
                     Grid.Column="2"
                     Command="{Binding SetupCommand}"
-                    Content="开始安装"
+                    Content="{DynamicResource Start}"
                     IsEnabled="{Binding CanInstall}" />
             </Grid>
-
         </Grid>
     </Grid>
 </Window>
