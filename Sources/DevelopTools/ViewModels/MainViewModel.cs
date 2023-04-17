@@ -5,19 +5,24 @@ using DevelopTools.Models;
 using DevelopTools.Properties;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml;
 
 namespace DevelopTools.ViewModels
 {
     internal class MainViewModel : BindableBase
     {
-
+        private readonly Dictionary<string, string> _languageMap = new Dictionary<string, string>()
+        {
+            {"中文","zh-CN" },
+            { "English", "en-US" }
+        };
         private IList<AddinData> _addinList;
         private AddinData _lookupAddin;
         private Regex _regex;
@@ -25,6 +30,38 @@ namespace DevelopTools.ViewModels
         {
             var allRevits = RevitProductUtility.GetAllInstalledRevitProducts();
             Products = allRevits.Select(r => new ProductData(r)).ToArray();
+
+            var cultrue = CultureInfo.CurrentCulture.Name;
+            if (cultrue == "zh-CN")
+            {
+                _selectedLanguage = "中文";
+            }
+            else
+            {
+                _selectedLanguage = "English";
+            }
+            SwitchLanguage("en-US", _languageMap[_selectedLanguage]);
+        }
+
+        private void SwitchLanguage(string source, string target)
+        {
+            if (source == target)
+            {
+                return;
+            }
+            try
+            {
+                var sourceUri = new Uri($"Languages/{source}.xaml", UriKind.Relative);
+                var targetUri = new Uri($"Languages/{target}.xaml", UriKind.Relative);
+                var sourceDict = Application.LoadComponent(sourceUri) as ResourceDictionary;
+                var targetDict = App.LoadComponent(targetUri) as ResourceDictionary;
+                Application.Current.Resources.MergedDictionaries.Remove(sourceDict);
+                Application.Current.Resources.MergedDictionaries.Add(targetDict);
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
 
 
@@ -56,6 +93,19 @@ namespace DevelopTools.ViewModels
         {
             get { return _canInstall; }
             set { SetProperty(ref _canInstall, value); }
+        }
+
+        public string[] Languages { get; set; } = new string[] { "中文", "English" };
+
+        private string _selectedLanguage;
+        public string SelectedLanguage
+        {
+            get { return _selectedLanguage; }
+            set
+            {
+                SwitchLanguage(_languageMap[_selectedLanguage], _languageMap[value]);
+                SetProperty(ref _selectedLanguage, value);
+            }
         }
 
         #endregion

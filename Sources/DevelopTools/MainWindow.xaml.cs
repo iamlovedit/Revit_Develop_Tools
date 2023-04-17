@@ -1,5 +1,6 @@
 ﻿using DevelopTools.ViewModels;
 using System.Diagnostics;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Documents;
 
