@@ -123,6 +123,26 @@ namespace DevelopTools.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Nice3point_Revit_Extensions2022 {
+            get {
+                object obj = ResourceManager.GetObject("Nice3point_Revit_Extensions2022", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Nice3point_Revit_Extensions2023 {
+            get {
+                object obj = ResourceManager.GetObject("Nice3point_Revit_Extensions2023", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] RevitLookup2016 {
             get {
                 object obj = ResourceManager.GetObject("RevitLookup2016", resourceCulture);
@@ -176,6 +196,26 @@ namespace DevelopTools.Properties {
         internal static byte[] RevitLookup2021 {
             get {
                 object obj = ResourceManager.GetObject("RevitLookup2021", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] RevitLookup2022 {
+            get {
+                object obj = ResourceManager.GetObject("RevitLookup2022", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] RevitLookup2023 {
+            get {
+                object obj = ResourceManager.GetObject("RevitLookup2023", resourceCulture);
                 return ((byte[])(obj));
             }
         }

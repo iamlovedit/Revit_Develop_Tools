@@ -136,6 +136,12 @@
   <data name="AddInManager2021" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AddInManager2021.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Nice3point_Revit_Extensions2022" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Nice3point.Revit.Extensions2022.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Nice3point_Revit_Extensions2023" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Nice3point.Revit.Extensions2023.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="RevitLookup2016" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RevitLookup2016.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -153,5 +159,11 @@
   </data>
   <data name="RevitLookup2021" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RevitLookup2021.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RevitLookup2022" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RevitLookup2022.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RevitLookup2023" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RevitLookup2023.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
