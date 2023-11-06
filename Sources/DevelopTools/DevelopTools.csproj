@@ -169,5 +169,17 @@
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nice3point.Revit.Extensions2022.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nice3point.Revit.Extensions2023.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RevitLookup2022.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RevitLookup2023.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
