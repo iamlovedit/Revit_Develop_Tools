@@ -4,7 +4,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <sys:String x:Key="Header">Revit开发环境配置</sys:String>
     <sys:String x:Key="CurrentUser">当前用户</sys:String>
-    <sys:String x:Key="AllUser">所有用户</sys:String>
+    <sys:String x:Key="AllUsers">所有用户</sys:String>
     <sys:String x:Key="Start">开始安装</sys:String>
     <sys:String x:Key="SwitchLanguage">语言:</sys:String>
 </ResourceDictionary>
