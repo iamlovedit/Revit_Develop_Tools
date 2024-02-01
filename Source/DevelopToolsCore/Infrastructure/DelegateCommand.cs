@@ -1,7 +1,6 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
-namespace DevelopTools.Infrastructure
+namespace DevelopToolsCore.Infrastructure
 {
     internal class DelegateCommand : ICommand
     {

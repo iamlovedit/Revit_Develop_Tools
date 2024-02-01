@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DevelopTools.Core
+﻿namespace DevelopTools.Core
 {
     internal class AddinData
     {

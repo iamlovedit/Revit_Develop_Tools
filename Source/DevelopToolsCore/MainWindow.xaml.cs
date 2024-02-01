@@ -1,15 +1,14 @@
-﻿using DevelopTools.ViewModels;
+﻿using DevelopToolsCore.ViewModels;
+using HandyControl.Controls;
 using System.Diagnostics;
-using System.Globalization;
 using System.Windows;
 using System.Windows.Documents;
-
-namespace DevelopTools
+namespace DevelopToolsCore
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : GlowWindow
     {
         public MainWindow()
         {
