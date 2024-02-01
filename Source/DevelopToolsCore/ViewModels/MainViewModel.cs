@@ -1,24 +1,20 @@
 ﻿using Autodesk.RevitAddIns;
 using DevelopTools.Core;
-using DevelopTools.Infrastructure;
-using DevelopTools.Models;
-using DevelopTools.Properties;
-using System;
-using System.Collections.Generic;
+using DevelopToolsCore.Infrastructure;
+using DevelopToolsCore.Models;
+using DevelopToolsCore.Properties;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Xml;
 
-namespace DevelopTools.ViewModels
+namespace DevelopToolsCore.ViewModels
 {
     internal class MainViewModel : BindableBase
     {
-        private readonly Dictionary<string, string> _languageMap = new Dictionary<string, string>()
+        private readonly Dictionary<string, string> _languageMap = new()
         {
             {"中文","zh-CN" },
             { "English", "en-US" }
@@ -74,13 +70,6 @@ namespace DevelopTools.ViewModels
 
         public bool IsCurrentUser { get; set; }
 
-        private double _progressValue;
-        public double ProgressValue
-        {
-            get { return _progressValue; }
-            set { SetProperty(ref _progressValue, value); }
-        }
-
         private string _installStatus;
         public string InstallStatus
         {
@@ -95,7 +84,7 @@ namespace DevelopTools.ViewModels
             set { SetProperty(ref _canInstall, value); }
         }
 
-        public string[] Languages { get; set; } = new string[] { "中文", "English" };
+        public string[] Languages { get; set; } = ["中文", "English"];
 
         private string _selectedLanguage;
         public string SelectedLanguage
@@ -116,78 +105,69 @@ namespace DevelopTools.ViewModels
             _setupCommand ?? (_setupCommand = new DelegateCommand(ExecuteSetupCommand, CanExecuteSetupCommand));
         async void ExecuteSetupCommand()
         {
-            ProgressValue = 0;
             try
             {
-                if (_regex is null)
-                {
-                    _regex = new Regex(@"[0-9]+");
-                }
+                _regex ??= new Regex(@"[0-9]+");
                 CanInstall = false;
+
                 #region AddinManager
                 var type = typeof(AddinData);
                 var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-                ProgressValue = 20;
                 var checkedVersion = Products.Where(p => p.IsSelected).ToArray();
                 var total = (IsManagerChecked ? checkedVersion.Length : 0) + (IsLookupChecked ? checkedVersion.Length : 0);
                 var per = 80d / total;
                 if (IsManagerChecked)
                 {
                     var title = "AddInManager";
-                    if (_addinList is null)
-                    {
-                        _addinList = new AddinData[]
-                        {
-                    new AddinData()
+                    _addinList ??= new AddinData[]
+                   {
+                    new()
                     {
                         AssemblyName=$"{title}.dll",
                         Type=AddinType.Command,
                         FullClassName="AddInManager.CAddInManager",
                         Text="Add-In Manager (Manual Mode)",
                     },
-                    new AddinData()
+                    new()
                     {
                         AssemblyName=$"{title}.dll",
                         Type=AddinType.Command,
                         FullClassName="AddInManager.CAddInManagerFaceless",
                         Text="Add-In Manager (Manual Mode, Faceless)",
                     },
-                    new AddinData()
+                    new()
                     {
                         AssemblyName=$"{title}.dll",
                         Type=AddinType.Command,
                         FullClassName="AddInManager.CAddInManagerReadOnly",
                         Text="Add-In Manager (ReadOnly Mode)",
                     },
-                        };
-                    }
+                   };
                     foreach (var product in checkedVersion)
                     {
-                        await InstallAddins(properties, per, title, product, _addinList, false);
+                        await InstallAddins(properties, title, product, _addinList, false);
                     }
                 }
                 #endregion
 
                 #region RevitLookup
+
                 if (IsLookupChecked)
                 {
                     var title = "RevitLookup";
-                    if (_lookupAddin is null)
+                    _lookupAddin ??= new AddinData()
                     {
-                        _lookupAddin = new AddinData()
-                        {
-                            AssemblyName = $"{title}.dll",
-                            Type = AddinType.Application,
-                            FullClassName = "RevitLookup.App",
-                            Text = "Revit Lookup"
-                        };
-                    }
+                        AssemblyName = $"{title}.dll",
+                        Type = AddinType.Application,
+                        FullClassName = "RevitLookup.App",
+                        Text = "Revit Lookup"
+                    };
                     foreach (var product in checkedVersion)
                     {
-                        await InstallAddins(properties, per, title, product, new AddinData[] { _lookupAddin }, true);
+                        await InstallAddins(properties, title, product, new AddinData[] { _lookupAddin }, true);
                     }
                 }
-                InstallStatus = $"{DateTime.Now} 全部安装完成！";
+                InstallStatus = $"{DateTime.Now} {(_selectedLanguage == "English" ? "installed successfully" : "安装完成")}！";
                 #endregion
             }
             catch (Exception e)
@@ -200,7 +180,7 @@ namespace DevelopTools.ViewModels
             }
         }
 
-        private async Task InstallAddins(PropertyInfo[] properties, double per, string title, ProductData product, IList<AddinData> addins, bool isLookup)
+        private async Task InstallAddins(PropertyInfo[] properties, string title, ProductData product, IList<AddinData> addins, bool isLookup)
         {
             var directory = IsCurrentUser ? product.RevitProduct.CurrentUserAddInFolder : product.RevitProduct.AllUsersAddInFolder;
             var xmlFile = Path.Combine(directory, $"{title}.addin");
@@ -208,9 +188,12 @@ namespace DevelopTools.ViewModels
             xmlDoc.Save(xmlFile);
             var dllFile = Path.Combine(directory, $"{title}.dll");
             var buffer = GetFileBuffer(product, isLookup);
+            if (buffer is null)
+            {
+                return;
+            }
             File.WriteAllBytes(dllFile, buffer);
-            ProgressValue += per;
-            InstallStatus = $"{DateTime.Now} 正在安装 {title} {product.RevitProduct.Name}";
+            InstallStatus = $"{DateTime.Now} {(_selectedLanguage == "English" ? "installing" : "正在安装")} {title} {product.RevitProduct.Name}";
             await Task.Delay(1000);
         }
 

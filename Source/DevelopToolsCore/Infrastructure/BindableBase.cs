@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace DevelopTools.Infrastructure
+namespace DevelopToolsCore.Infrastructure
 {
     internal class BindableBase : INotifyPropertyChanged
     {

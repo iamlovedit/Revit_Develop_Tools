@@ -1,7 +1,7 @@
 ﻿using Autodesk.RevitAddIns;
-using DevelopTools.Infrastructure;
+using DevelopToolsCore.Infrastructure;
 
-namespace DevelopTools.Models
+namespace DevelopToolsCore.Models
 {
     internal class ProductData : BindableBase
     {
