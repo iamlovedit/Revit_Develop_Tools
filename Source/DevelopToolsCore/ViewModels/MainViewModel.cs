@@ -50,7 +50,7 @@ namespace DevelopToolsCore.ViewModels
                 var sourceUri = new Uri($"Languages/{source}.xaml", UriKind.Relative);
                 var targetUri = new Uri($"Languages/{target}.xaml", UriKind.Relative);
                 var sourceDict = Application.LoadComponent(sourceUri) as ResourceDictionary;
-                var targetDict = App.LoadComponent(targetUri) as ResourceDictionary;
+                var targetDict = Application.LoadComponent(targetUri) as ResourceDictionary;
                 Application.Current.Resources.MergedDictionaries.Remove(sourceDict);
                 Application.Current.Resources.MergedDictionaries.Add(targetDict);
             }
