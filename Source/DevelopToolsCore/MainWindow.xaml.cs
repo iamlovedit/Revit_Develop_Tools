@@ -20,7 +20,10 @@ namespace DevelopToolsCore
         {
             if (sender is Hyperlink hyperLink)
             {
-                Process.Start(new ProcessStartInfo(hyperLink.NavigateUri.AbsoluteUri));
+                Process.Start(new ProcessStartInfo(hyperLink.NavigateUri.AbsoluteUri)
+                {
+                    UseShellExecute = true
+                });
             }
         }
     }

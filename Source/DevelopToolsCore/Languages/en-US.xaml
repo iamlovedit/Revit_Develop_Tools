@@ -1,10 +1,25 @@
-﻿<ResourceDictionary
+<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <sys:String x:Key="Header">Environment Configuration</sys:String>
+    <sys:String x:Key="AppTitle">Revit Developer Tools</sys:String>
+    <sys:String x:Key="AppSubtitle">Install and manage common development add-ins</sys:String>
     <sys:String x:Key="CurrentUser">Current User</sys:String>
     <sys:String x:Key="AllUsers">All Users</sys:String>
-    <sys:String x:Key="Start">Start</sys:String>
-    <sys:String x:Key="SwitchLanguage">Language:</sys:String>
+    <sys:String x:Key="Start">Install</sys:String>
+    <sys:String x:Key="SwitchLanguage">Language</sys:String>
+    <sys:String x:Key="SelectRevitVersion">Select Revit versions</sys:String>
+    <sys:String x:Key="DetectedVersionsHint">Installed versions are detected automatically</sys:String>
+    <sys:String x:Key="Detected">Detected</sys:String>
+    <sys:String x:Key="NoRevitDetected">No Revit installation found</sys:String>
+    <sys:String x:Key="NoRevitDetectedHint">Make sure Revit is installed correctly, then restart this tool.</sys:String>
+    <sys:String x:Key="InstallTools">Install tools</sys:String>
+    <sys:String x:Key="InstallToolsHint">You can select more than one tool</sys:String>
+    <sys:String x:Key="AddinManagerDescription">Load and debug add-ins</sys:String>
+    <sys:String x:Key="RevitLookupDescription">Inspect objects and parameters</sys:String>
+    <sys:String x:Key="InstallScope">Installation scope</sys:String>
+    <sys:String x:Key="InstallScopeHint">Current user is recommended</sys:String>
+    <sys:String x:Key="AdminPermissionHint">All users installation requires administrator access</sys:String>
+    <sys:String x:Key="ReadyStatus">Select a Revit version and tool to begin</sys:String>
 </ResourceDictionary>

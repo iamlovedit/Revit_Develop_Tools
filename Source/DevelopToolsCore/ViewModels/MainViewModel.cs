@@ -68,7 +68,7 @@ namespace DevelopToolsCore.ViewModels
 
         public bool IsManagerChecked { get; set; }
 
-        public bool IsCurrentUser { get; set; }
+        public bool IsCurrentUser { get; set; } = true;
 
         private string _installStatus;
         public string InstallStatus
