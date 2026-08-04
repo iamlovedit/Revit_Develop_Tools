@@ -1,0 +1,55 @@
+name: Release single-file application
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Restore dependencies
+        run: dotnet restore Source/DevelopToolsCore/DevelopToolsCore.csproj --runtime win-x64
+
+      - name: Publish single-file application
+        run: >-
+          dotnet publish Source/DevelopToolsCore/DevelopToolsCore.csproj
+          --configuration Release
+          --runtime win-x64
+          --no-restore
+          --output artifacts/publish
+          -p:PublishProfile=SingleFile
+
+      - name: Prepare release asset
+        shell: pwsh
+        run: |
+          $assetName = "RevitDevelopTools-$env:GITHUB_REF_NAME-win-x64.exe"
+          Copy-Item "artifacts/publish/DevelopToolsCore.exe" "artifacts/$assetName"
+          "RELEASE_ASSET=artifacts/$assetName" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Create GitHub Release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $tag = $env:GITHUB_REF_NAME
+          gh release view $tag --repo $env:GITHUB_REPOSITORY 2>$null | Out-Null
+          if ($LASTEXITCODE -eq 0) {
+            gh release upload $tag $env:RELEASE_ASSET --clobber --repo $env:GITHUB_REPOSITORY
+          }
+          else {
+            gh release create $tag $env:RELEASE_ASSET --generate-notes --title $tag --repo $env:GITHUB_REPOSITORY
+          }
