@@ -1,5 +1,7 @@
 # Revit Developer Tools 🛠️
 
+**中文** | [English](README_EN.md)
+
 一款轻量级的 Revit 开发环境配置工具，用于快速安装常用的调试与对象查看插件。项目基于 .NET 8 和 WPF 开发，内置 Add-in Manager 与 RevitLookup，无需手动查找插件文件或编写 `.addin` 配置。
 
 ![Windows](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D6?logo=windows)
